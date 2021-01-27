@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-
+  before_action :authenticate_token, except: [:login, :create]
+  
   # Autheticate user 
   def login
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      render json: {status: 200, user: user}
+      token = create_token(user.id, user.username)
+      render json: {status: 200, token: token, user: user}
     else
       render json: {status: 401, message: "Unauthorized"}
     end
