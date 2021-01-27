@@ -9,6 +9,8 @@ gem 'rails', '~> 6.1.1'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+# Use 'Faker'
+gem 'faker', '~> 2.15', '>= 2.15.1'
 # Use 'awesome_print'
 gem 'awesome_print'
 
@@ -16,8 +18,13 @@ gem 'awesome_print'
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Generate encrypted tokens
+gem 'jwt'
+# Generate and decode JSON webtokens on rails
+gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
