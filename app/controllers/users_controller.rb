@@ -28,7 +28,7 @@ end
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(username: params[:username], password: params[:password])
 
     if @user.save
       render json: @user, status: :created, location: @user
