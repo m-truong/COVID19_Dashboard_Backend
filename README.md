@@ -12,21 +12,24 @@ The COVID-19 global pandemic is one of the worst health crises in history, and i
 
 ### Project Summary:
 
-My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet interactive map that visitors can zoom, drag, and click on to display the total cases, deaths, and recovered statistics for Worldwide and United States COVID-19 data. The dashboard pages also render stats tables that display the total cumulative cases, deaths, and recovered data for every country and state. The graphs page renders two line graphs using React-Chartjs-2 displaying the rise in daily new COVID-19 cases in the past 120 days. The videos page displays playable YouTube videos with information on COVID-19 biology, vaccine research, and best practices on staying safe during the pandemic. Visitors can also register and login using a username and password that comunicates with my RubyOnRails backend server using JWT authentication.
+My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet interactive map that visitors can zoom, drag, and click on to display the total cases, deaths, and recovered statistics for Worldwide and United States COVID-19 data. The dashboard pages also render stats tables that display the total cumulative cases, deaths, and recovered data for every country and state. The graphs page renders two line graphs using React-Chartjs-2 displaying the rise in daily new COVID-19 cases in the past 120 days. The videos page displays playable YouTube videos with information on COVID-19 biology, vaccine research, and best practices on staying safe during the pandemic. Visitors can also go to my register and login pages to create a username and password that communicates with my RubyOnRails backend server using JWT authentication.
 
 **Link to site:** ()
 
 ### Features:
 
 - I fetched the COVID-19 data from the Disease.sh third-party global disease API (https://disease.sh/). I was able to dynamically draw interactable React-Leaflet Circle components using the total cases data for every country and state. I also was able to render a dark-themed map TileLayer in React-Leaflet.
+- While using Postman to explore the Disease.sh API, I realized that the API endpoint for 'states' data did not contain information with latitude and longitude properties for all 50 states. I needed latitude and longitude coordinates in order to draw Circle components from React-Leaflet, so I used LatLong.net to create my own array of 'states' objects with latitude and longitude properties on them. I mapped over the 'states' data from the Disease.sh and added in those latitude and longitude properties. 
 - I used React-Chartjs-2 to draw line graphs of daily new cases worldwide and in the United States. React-Chartjs-2's Line-graph component allowed me to pass down custom options and data rendering the rise in daily new cases.
-- My COVID-19 dashboard app also uses RubyOnRails as the backend with JWT authentication for visitors to regiser and login with a username and password.
-- I used React-Player to display playable YouTube videos with additional information on the global COVID-19 pandemic.
+- I used the 'Styled-Components' library to create a lot of reusable React components. This allowed me to build my React app based on the composition model to keep it modular and scalable. 
+- I created a very useful 'Utilities.js' file that contained most of my important helper functions and extra data. I imported my 'statesArray' with latitude and longitude properties, my custom React 'styled-components', and my 'drawCovidCircles', 'sortTableData', etc. functions from my 'Utilities.js' file in order to make them available throughout my React app. 
+- I used React-Player to display YouTube videos with additional information on the global COVID-19 pandemic.
 - I added an animated video background of the coronavirus strain that plays while visitors are browsing my app. 
+- My COVID-19 dashboard app also uses RubyOnRails as the backend with JWT authentication for visitors to regiser and login with a username and password.
 
-### Code Example:
+### Code Examples:
 
-For my WorldDashboard and StatesDashboard page, I utilized React-Bootstrap to help display my react components using Bootstrap's Container, Row, and Col components. This helped better organize my react components very cleanly without having to add a lot of CSS styling rules. React-Bootstrap's grid layout helped me to focus on building reusable and scalable components, such as my DataCard and StatsTable components, that I could render consistently across all my React-Router pages. 
+For my dashboard pages, I utilized React-Bootstrap to help display my react components using Bootstrap's Container, Row, and Col components. This helped better organize my react components very cleanly without having to add a lot of CSS styling rules to format my components. React-Bootstrap's grid layout helped me to focus on building reusable and scalable components, such as my DataCard and StatsTable components, that I could render consistently across all my React-Router pages. 
 
 ```
 <Container fluid>
@@ -51,6 +54,57 @@ For my WorldDashboard and StatesDashboard page, I utilized React-Bootstrap to he
 </Container>
 ```
 
+I enjoyed using 'Styled-Components' to streamline my CSS styling without having to add lots of CSS classNames to my React app. It also helped keep my App.css clean and easy to read. Using 'styled-components' allowed me to create reusable components with similar styling across all my pages. 
+
+```
+export const Box = styled.div`
+    border: 0.15rem #2E2F2F solid;
+    background-color: #43464B;
+    border-radius: 1.1rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); 
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &hover: {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); 
+    }
+`;
+```
+
+I used my 'Utilities.js' file to store important helper functions that I needed to make accessible throughout my React app. I exported my 'drawCovidCircles' helper function to my CovidLiveMap.js component to draw Circle components from React-Leaflet using cases numbers from the Disease.sh API database. 
+
+```
+export const drawCovidCircles = (covidCircleData, type) => {
+    return (
+        covidCircleData.map((regionObj, idx) => (
+            <Circle
+                key={idx}
+                pathOptions={circleColors.option}
+                radius={type === "Worldwide" ? Math.sqrt(regionObj.cases) * 400 : Math.sqrt(regionObj.cases) * 250}
+                fillOpacity={0.4}
+                center={[regionObj.countryInfo.lat, regionObj.countryInfo.long]}
+            >
+                <Popup>
+                    <PopupBox>
+                        <PopupStat size="Heading" >
+                            {regionObj.country}
+                        </PopupStat>
+                        <PopupStat type="Cases">
+                            Cases: {numeral(regionObj.cases).format("0,0")}
+                        </PopupStat>
+                        <PopupStat type="Deaths">
+                            Deaths: {numeral(regionObj.deaths).format("0,0")}
+                        </PopupStat>
+                        <PopupStat type="Recovered">
+                            Recovered: {numeral(regionObj.recovered).format("0,0")}
+                        </PopupStat>
+                    </PopupBox>
+                </Popup>
+            </Circle >
+        )))
+};
+```
+
 ### API Reference:
 
 (https://disease.sh/docs/)
@@ -64,6 +118,7 @@ For my WorldDashboard and StatesDashboard page, I utilized React-Bootstrap to he
 - React-Player (https://www.npmjs.com/package/react-player)
 - React-Router-DOM (https://reactrouter.com/)
 - React-Bootstrap (https://react-bootstrap.github.io/)
+- Styled-Components (https://styled-components.com/)
 - GitLFS package (https://git-lfs.github.com/)
 - COVID-19 Animated Background Video (https://www.youtube.com/watch?v=WNG7X3-_HJE)
 - Heroku (https://www.heroku.com/)
@@ -82,6 +137,13 @@ I uploaded my wireframe images and added the links here.
 ![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-Login_Signup_Page_nympfi.png)
 ---
 
+## Future Project Improvements:
+
+1. Add a Twitter API that fetches tweets from @CDCgov and @CNN with updates and information on COVID-19
+2. Add more Chart.js graphs that render different trends in COVID-19 data for different age and socio-economic groups
+3. Add a dropdown to select a specific country or state and render it's total cases, deaths, and recovered on the datacards and change the zoom of the map to the region's latitude and longitude on the Leaflet map
+
+
 ## Lessons/Ongoing Issues:
 
 ### Rendering more COVID-19 Chart.js graphs 
@@ -89,23 +151,22 @@ I uploaded my wireframe images and added the links here.
 - I originally hoped to use React-Chartjs-2 to render graphs to display trends in COVID-19 cases based on different factors such as socioeconomic status, access to healthcare, and exposure to the virus based on occupation, travel, etc.
 - But the Disease.sh third-party COVID-19 API database didn't have special populations data based on these criteria
 
-## Future Game Improvements:
-
-1. Add a Twitter API that fetches tweets fro CDCgov and CNN with updates and information on COVID-19
-2. Add more Chart.js graphs that render different trends in COVID-19 data for different age and socio-economic groups
-3. Add a dropdown to select a specific country or state and render it's total cases, deaths, and recovered on the datacards and change the zoom of the map to the region's latitude and longitude on the Leaflet map
-
-## Credits:
-- John Hopkins COVID-19 Map (https://coronavirus.jhu.edu/map.html)
-- CNN COVID-19 Cases Dashboard (https://www.cnn.com/interactive/2020/health/coronavirus-us-maps-and-cases/)
-- COVID-19 Tracker YouTube Inspiration (https://www.youtube.com/watch?v=cF3pIMJUZxM)
 
 ## Issues and Resolutions
 
 #### List of Errors.....
 
 **ERROR**:
-Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+1. Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+2. remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
 
 **RESOLUTION**:
-This error seems to be due to a browser extension blocking the request to render the YouTube videos on my videos page. Visitors with an ad blocker extension will encounter this error. 
+1. This error seems to be due to a browser extension blocking the request to render the YouTube videos on my videos page. Visitors with an ad blocker extension will encounter this error. 
+2. This error occurred when I was staging and attempting to push up my large .mp4 video file. GitHub's file size limit is ~100.00MB, so I had to use Git Large File Storage in order to push up my large audio and media files. I had to locally delete my large files, and do a git reset --soft back a number of commits to before I committed my large files. Then I was able to squash all my recent updates into a single commit with the large files removed from my commit history. 
+- Source (https://stackoverflow.com/questions/19573031/cant-push-to-github-because-of-large-file-which-i-already-deleted)
+
+
+## Credits:
+- John Hopkins COVID-19 Map (https://coronavirus.jhu.edu/map.html)
+- CNN COVID-19 Cases Dashboard (https://www.cnn.com/interactive/2020/health/coronavirus-us-maps-and-cases/)
+- COVID-19 Tracker YouTube Inspiration (https://www.youtube.com/watch?v=cF3pIMJUZxM)
