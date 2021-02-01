@@ -69,6 +69,18 @@ For my WorldDashboard and StatesDashboard page, I utilized React-Bootstrap to he
 - Heroku (https://www.heroku.com/)
 
 ---
+## Wireframes
+
+I uploaded my wireframe images and added the links here.
+
+![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-Dashboard_Page_ns1frg.png)
+
+![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-Daily_Cases_Page_afqznt.png)
+
+![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-YouTube_Videos_Page_l8ukqk.png)
+
+![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-Login_Signup_Page_nympfi.png)
+---
 
 ## Lessons/Ongoing Issues:
 
