@@ -119,6 +119,7 @@ export const drawCovidCircles = (covidCircleData, type) => {
 - React-Router-DOM (https://reactrouter.com/)
 - React-Bootstrap (https://react-bootstrap.github.io/)
 - Styled-Components (https://styled-components.com/)
+- Numeral.js (http://numeraljs.com/)
 - GitLFS package (https://git-lfs.github.com/)
 - COVID-19 Animated Background Video (https://www.youtube.com/watch?v=WNG7X3-_HJE)
 - Heroku (https://www.heroku.com/)
