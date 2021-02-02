@@ -14,7 +14,10 @@ The COVID-19 global pandemic is one of the worst health crises in history, and i
 
 My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet interactive map that visitors can zoom, drag, and click on to display the total cases, deaths, and recovered statistics for Worldwide and United States COVID-19 data. The dashboard pages also render stats tables that display the total cumulative cases, deaths, and recovered data for every country and state. The graphs page renders two line graphs using React-Chartjs-2 displaying the rise in daily new COVID-19 cases in the past 120 days. The videos page displays playable YouTube videos with information on COVID-19 biology, vaccine research, and best practices on staying safe during the pandemic. Visitors can also go to my register and login pages to create a username and password that communicates with my RubyOnRails backend server using JWT authentication.
 
-**Link to site:** ()
+**Link to COVID-19 Dashboard Frontend:** 
+()
+**Link to COVID-19 Dashboard Backend:** 
+(https://covid19-dashboard-backend-api.herokuapp.com/)
 
 ### Features:
 
@@ -118,6 +121,8 @@ export const drawCovidCircles = (covidCircleData, type) => {
 - React-Player (https://www.npmjs.com/package/react-player)
 - React-Router-DOM (https://reactrouter.com/)
 - React-Bootstrap (https://react-bootstrap.github.io/)
+- React-Tweet (https://github.com/mannynotfound/react-tweet)
+- Twitter Developer API (https://developer.twitter.com/en/docs/twitter-api)
 - Styled-Components (https://styled-components.com/)
 - Numeral.js (http://numeraljs.com/)
 - GitLFS package (https://git-lfs.github.com/)
