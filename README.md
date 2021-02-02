@@ -10,14 +10,18 @@
 
 The COVID-19 global pandemic is one of the worst health crises in history, and it has infected and killed millions of people. I wanted to build a COVID-19 Dashboard App to visually display real-time cases, deaths, and recovered data using React-Chartjs-2, React-Leaflet, and the Disease.sh COVID-19 API database. My COVID-19 Dashboard is inspired by the John Hopkins COVID-19 Map (https://coronavirus.jhu.edu/map.html), as well as CNN's news coverage of daily COVID-19 cases. I'm a fan of the Resident Evil video game series (https://www.residentevil.com/), so my COVID-19 dashboard app also takes visual inspiration from the series to convey the severity and horror of the global COVID-19 crisis.
 
+---
+
 ### Project Summary:
 
 My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet interactive map that visitors can zoom, drag, and click on to display the total cases, deaths, and recovered statistics for Worldwide and United States COVID-19 data. The dashboard pages also render stats tables that display the total cumulative cases, deaths, and recovered data for every country and state. The graphs page renders two line graphs using React-Chartjs-2 displaying the rise in daily new COVID-19 cases in the past 120 days. The videos page displays playable YouTube videos with information on COVID-19 biology, vaccine research, and best practices on staying safe during the pandemic. Visitors can also go to my register and login pages to create a username and password that communicates with my RubyOnRails backend server using JWT authentication.
 
 **Link to COVID-19 Dashboard Frontend:** 
-()
+
 **Link to COVID-19 Dashboard Backend:** 
 (https://covid19-dashboard-backend-api.herokuapp.com/)
+
+---
 
 ### Features:
 
@@ -29,6 +33,8 @@ My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet inter
 - I used React-Player to display YouTube videos with additional information on the global COVID-19 pandemic.
 - I added an animated video background of the coronavirus strain that plays while visitors are browsing my app. 
 - My COVID-19 dashboard app also uses RubyOnRails as the backend with JWT authentication for visitors to regiser and login with a username and password.
+
+---
 
 ### Code Examples:
 
@@ -107,6 +113,7 @@ export const drawCovidCircles = (covidCircleData, type) => {
         )))
 };
 ```
+---
 
 ### API Reference:
 
@@ -130,6 +137,7 @@ export const drawCovidCircles = (covidCircleData, type) => {
 - Heroku (https://www.heroku.com/)
 
 ---
+
 ## Wireframes
 
 I uploaded my wireframe images and added the links here.
@@ -141,6 +149,7 @@ I uploaded my wireframe images and added the links here.
 ![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-YouTube_Videos_Page_l8ukqk.png)
 
 ![Link](https://res.cloudinary.com/mtruong/image/upload/v1612151577/COVID-19_Map_Dashboard_Wireframe-Login_Signup_Page_nympfi.png)
+
 ---
 
 ## Future Project Improvements:
@@ -148,7 +157,7 @@ I uploaded my wireframe images and added the links here.
 1. Add a Twitter API that fetches tweets from @CDCgov and @CNN with updates and information on COVID-19
 2. Add more Chart.js graphs that render different trends in COVID-19 data for different age and socio-economic groups
 3. Add a dropdown to select a specific country or state and render it's total cases, deaths, and recovered on the datacards and change the zoom of the map to the region's latitude and longitude on the Leaflet map
-
+---
 
 ## Lessons/Ongoing Issues:
 
@@ -157,6 +166,7 @@ I uploaded my wireframe images and added the links here.
 - I originally hoped to use React-Chartjs-2 to render graphs to display trends in COVID-19 cases based on different factors such as socioeconomic status, access to healthcare, and exposure to the virus based on occupation, travel, etc.
 - But the Disease.sh third-party COVID-19 API database didn't have special populations data based on these criteria
 
+---
 
 ## Issues and Resolutions
 
@@ -170,7 +180,7 @@ I uploaded my wireframe images and added the links here.
 1. This error seems to be due to a browser extension blocking the request to render the YouTube videos on my videos page. Visitors with an ad blocker extension will encounter this error. 
 2. This error occurred when I was staging and attempting to push up my large .mp4 video file. GitHub's file size limit is ~100.00MB, so I had to use Git Large File Storage in order to push up my large audio and media files. I had to locally delete my large files, and do a git reset --soft back a number of commits to before I committed my large files. Then I was able to squash all my recent updates into a single commit with the large files removed from my commit history. 
 - Source (https://stackoverflow.com/questions/19573031/cant-push-to-github-because-of-large-file-which-i-already-deleted)
-
+---
 
 ## Credits:
 - John Hopkins COVID-19 Map (https://coronavirus.jhu.edu/map.html)
