@@ -17,6 +17,7 @@ The COVID-19 global pandemic is one of the worst health crises in history, and i
 My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet interactive map that visitors can zoom, drag, and click on to display the total cases, deaths, and recovered statistics for Worldwide and United States COVID-19 data. The dashboard pages also render stats tables that display the total cumulative cases, deaths, and recovered data for every country and state. The graphs page renders two line graphs using React-Chartjs-2 displaying the rise in daily new COVID-19 cases in the past 120 days. The videos page displays playable YouTube videos with information on COVID-19 biology, vaccine research, and best practices on staying safe during the pandemic. Visitors can also go to my register and login pages to create a username and password that communicates with my RubyOnRails backend server using JWT authentication.
 
 **Link to COVID-19 Dashboard Frontend:** 
+(https://covid19-dashboard-frontend-api.herokuapp.com/)
 
 **Link to COVID-19 Dashboard Backend:** 
 (https://covid19-dashboard-backend-api.herokuapp.com/)
@@ -28,6 +29,7 @@ My COVID-19 Dashboard has two dashboard pages that renders a React-Leaflet inter
 - I fetched the COVID-19 data from the Disease.sh third-party global disease API (https://disease.sh/). I was able to dynamically draw interactable React-Leaflet Circle components using the total cases data for every country and state. I also was able to render a dark-themed map TileLayer in React-Leaflet.
 - While using Postman to explore the Disease.sh API, I realized that the API endpoint for 'states' data did not contain information with latitude and longitude properties for all 50 states. I needed latitude and longitude coordinates in order to draw Circle components from React-Leaflet, so I used LatLong.net to create my own array of 'states' objects with latitude and longitude properties on them. I mapped over the 'states' data from the Disease.sh and added in those latitude and longitude properties. 
 - I used React-Chartjs-2 to draw line graphs of daily new cases worldwide and in the United States. React-Chartjs-2's Line-graph component allowed me to pass down custom options and data rendering the rise in daily new cases.
+- I used 'React-Tweets' to render live tweets that I fetched from the Twitter Developer's API (https://api.twitter.com/1.1/search/tweets.json). I displayed tweets as part of my News Feed page with more information about recent news on the coronavirus pandemic.
 - I used the 'Styled-Components' library to create a lot of reusable React components. This allowed me to build my React app based on the composition model to keep it modular and scalable. 
 - I created a very useful 'Utilities.js' file that contained most of my important helper functions and extra data. I imported my 'statesArray' with latitude and longitude properties, my custom React 'styled-components', and my 'drawCovidCircles', 'sortTableData', etc. functions from my 'Utilities.js' file in order to make them available throughout my React app. 
 - I used React-Player to display YouTube videos with additional information on the global COVID-19 pandemic.
@@ -113,6 +115,25 @@ export const drawCovidCircles = (covidCircleData, type) => {
         )))
 };
 ```
+With a lot of help from my instructor Arthur, I was able fetch live tweets from the Twitter Developer API and render them in my React app News Feed page with the 'React-Tweet' npm package. 
+
+```
+app.get('/tweets/getTweets', async (req, res) => {
+  try {
+    const tweets = await axios({
+      url: `https://api.twitter.com/1.1/search/tweets.json?q=%40cdcgov&result_type=popular&count=3&lang=en`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer AAAAAAAAAAAAAAAAAAAAAPw1MQEAAAAA%2BnKaVgyRfG4TfnfvC6Ss8boCUow%3Dj9CVdyRgXy52MbBgLW47gdxRtlF875buXqTHIiGBsq7FFMVRrb`,
+        'Content-Type': 'application/json',
+      },
+    })
+    res.status(200).json(tweets.data)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+```
 ---
 
 ### API Reference:
@@ -186,3 +207,4 @@ I uploaded my wireframe images and added the links here.
 - John Hopkins COVID-19 Map (https://coronavirus.jhu.edu/map.html)
 - CNN COVID-19 Cases Dashboard (https://www.cnn.com/interactive/2020/health/coronavirus-us-maps-and-cases/)
 - COVID-19 Tracker YouTube Inspiration (https://www.youtube.com/watch?v=cF3pIMJUZxM)
+- My GA-instructor Arthur (https://github.com/arthurbernierjr) helped me understand how to fetch tweets from the Twitter Developer's API 
